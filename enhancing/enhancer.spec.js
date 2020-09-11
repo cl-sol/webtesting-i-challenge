@@ -36,6 +36,12 @@ const item6 = {
     enhancement: 16
 }
 
+const item7 = {
+    name: "banjo",
+    durability: 93,
+    enhancement: 0
+}
+
 describe("repair", () => {
     it ("restores durability to 100", () => {
         const expectedDurability = 100;
@@ -118,6 +124,33 @@ describe("fail", () => {
     })
 })
 
-// describe("get", () => {
+describe("get", () => {
+    it("does not modify item name", () => {
+        const actualName = enhancer.get(item7)
 
-// })
+        expect(actualName)
+            .toEqual(
+                {
+                    name: "banjo",
+                    durability: 93,
+                    enhancement: 0
+                }
+            )
+    })
+
+    it("returns changed name", () => {
+        const changedName = "[+2] apple"
+        const actualName = enhancer.get(item1)
+
+        expect(actualName.name).toBe(changedName)
+
+        // expect(actualName.name)
+        //     .toEqual(
+        //         {
+        //             name: "[+2] apple",
+        //             durability: 5,
+        //             enhancement: 2
+        //         }
+        //     )
+    })
+})
